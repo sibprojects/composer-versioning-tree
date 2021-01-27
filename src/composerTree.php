@@ -6,6 +6,13 @@ class composerTree {
 
 	use ReadDir, ReadGit;
 
+	protected $useGitApi;
+
+	public function __construct($useGitApi = true)
+	{
+		$this->useGitApi = $useGitApi;
+	}
+
   /**
    * @param $startPath
    */
@@ -65,7 +72,7 @@ class composerTree {
 					}
 				}
 
-				$package['latest'] = $this->readGit($package['source']['url']);
+				$package['latest'] = $this->readGit($this->useGitApi, $package['source']['url']);
 
 				$packages[$name] = $package;
 			}

@@ -7,6 +7,18 @@ trait readGit {
   /**
    * @param $source
    */
+	public function readGit($useApi, $source)
+	{
+		if($useApi){
+			return self::readGitApi($source);
+		} else {
+			return self::readGitRaw($source);
+		}
+	}
+
+  /**
+   * @param $source
+   */
 	public function readGitApi($source)
 	{
 		// prepare api link of tags
@@ -37,7 +49,7 @@ trait readGit {
   /**
    * @param $source
    */
-	public function readGit($source)
+	public function readGitRaw($source)
 	{
 		// prepare api link of tags
 		$source = str_replace('.git', '/releases/latest', $source);

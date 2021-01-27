@@ -2,7 +2,8 @@
 
 require_once('src/_autoload.php');
 
-$composerTree = new Src\ComposerTree();
+$useApi = false;
+$composerTree = new Src\ComposerTree($useApi);
 
 $tree = $composerTree->make(realpath(dirname(__FILE__)).'/examples/');
 
