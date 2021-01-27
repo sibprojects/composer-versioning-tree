@@ -18,7 +18,7 @@ trait readDir {
 
 				if ( !is_dir($src . '/' . $file) ) {
 
-					if ($file == 'composer.lock') {
+					if ($file == 'composer.json' && file_exists($src . '/composer.lock')) {
 						$result[] = $src . '/' . $file;
 					}
 				} else {
