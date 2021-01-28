@@ -61,14 +61,14 @@ trait readGit {
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		$result = curl_exec($curl);
 		$headers = explode("\r\n", $result);
-		if(isset($headers[0]) && $headers[0]=='HTTP/1.1 302 Found'){
+		if(isset($headers[0]) && strstr($headers[0],'302')){
 			foreach($headers as $header){
-				if(strstr($header,'Location')){
-					$version = explode('Location: ', $header)[1];
+				if(strstr($header,'ocation')){
+					$version = explode('ocation: ', $header)[1];
 					$version = explode('/',$version);
 					$version = $version[count($version)-1];
 					if($version=='releases'){
-						$url = explode('Location: ', $header)[1];
+						$url = explode('ocation: ', $header)[1];
 						$curl_s = curl_init($url);
 						curl_setopt($curl_s, CURLOPT_HEADER, 0);
 						curl_setopt($curl_s, CURLOPT_RETURNTRANSFER, 1);
